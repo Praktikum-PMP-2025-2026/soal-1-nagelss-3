@@ -48,7 +48,7 @@ int main(){
     for (int i=0;i<N;i++){
         sum += rekursi(i);
     }
-    printf("\nWAKTU %d",sum);
+    printf("\nWAIT %d",sum);
     return 0;
 
 }
