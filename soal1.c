@@ -19,7 +19,7 @@ typedef struct Pasien{
     int waktu;
 } Pasien;
 
-int rekursi(int n){
+int hitung_waktu(int n){
     int sum = 0;
     for (int i=0;i<n;i++){
         sum += waktu[i];
@@ -48,7 +48,7 @@ int main(){
     
     int sum = 0;
     for (int i=0;i<N;i++){
-        sum += rekursi(i);
+        sum += hitung_waktu(i);
     }
     printf("\nWAIT %d",sum);
     return 0;
