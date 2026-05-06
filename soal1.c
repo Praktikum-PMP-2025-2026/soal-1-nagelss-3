@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int queue[100];
+int waktu[100];
 
 typedef struct Pasien{
     char id[10];
@@ -22,7 +22,7 @@ typedef struct Pasien{
 int rekursi(int n){
     int sum = 0;
     for (int i=0;i<n;i++){
-        sum += queue[i];
+        sum += waktu[i];
     }
     return sum;
 }
@@ -35,7 +35,7 @@ int main(){
     for (int i=0;i<N;i++){
         scanf("%s",&listpasien[i].id);
         scanf("%d",&listpasien[i].waktu);
-        queue[i] = listpasien[i].waktu;
+        waktu[i] = listpasien[i].waktu;
     }
 
     printf("ORDER ");
