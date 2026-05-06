@@ -1,4 +1,3 @@
-#include <stdio.h>
 /** EL2008 Praktikum Pemecahan Masalah dengan Pemrograman 2025/2026
  *   Modul               : 4
  *   Hari dan Tanggal    : Rabu, 6 Mei 2026
@@ -41,7 +40,10 @@ int main(){
 
     printf("ORDER ");
     for (int i=0;i<N;i++){
-        printf("%s ",listpasien[i].id);
+        printf("%s",listpasien[i].id);
+        if (i!=N-1){
+            printf(" ");
+        }
     }
     
     int sum = 0;
