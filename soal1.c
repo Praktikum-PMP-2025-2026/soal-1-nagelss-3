@@ -12,45 +12,69 @@
 #include <stdlib.h>
 #include <string.h>
 
-int waktu[100];
-
-typedef struct Pasien{
+struct Pasien{
     char id[10];
     int waktu;
-} Pasien;
+    struct Pasien* next;
+};
 
-int hitung_waktu(int n){
-    int sum = 0;
-    for (int i=0;i<n;i++){
-        sum += waktu[i];
+struct Pasien* head = NULL;
+
+void tambah_pasien(char* id, int waktu){
+    struct Pasien* baru = (struct Pasien*)malloc(sizeof(struct Pasien));
+    strcpy(baru->id, id);
+    baru->waktu = waktu;
+    
+    if (head==NULL){
+        head = baru;
+        return;
     }
-    return sum;
+    struct Pasien* temp = head;
+    while (temp->next!=NULL){
+        temp = temp->next;
+    }
+    temp->next = baru;
+    return;
 }
 
+void print_order(){
+    struct Pasien* temp = head;
+    printf("ORDER ");
+    while (temp != NULL) {
+        printf("%s",temp->id);
+        if (temp->next!=NULL){
+            printf(" ");
+        }
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+void print_wait(int n){
+    struct Pasien* temp = head;
+    printf("WAIT ");
+    int sum = 0;
+    int i = 1;
+    while (temp->next!=NULL){
+        sum += (temp->waktu)*(n-i);
+        i++;
+        temp = temp->next;
+    }
+    printf("%d",sum);
+    return;
+}
 int main(){
     int N;
     scanf("%d",&N);
 
-    Pasien listpasien[N];
+    char id_s[10];
+    int waktu_s;
     for (int i=0;i<N;i++){
-        scanf("%s",&listpasien[i].id);
-        scanf("%d",&listpasien[i].waktu);
-        waktu[i] = listpasien[i].waktu;
+        scanf("%s",&id_s);
+        scanf("%d",&waktu_s);
+        tambah_pasien(id_s, waktu_s);
     }
-
-    printf("ORDER ");
-    for (int i=0;i<N;i++){
-        printf("%s",listpasien[i].id);
-        if (i!=N-1){
-            printf(" ");
-        }
-    }
-    
-    int sum = 0;
-    for (int i=0;i<N;i++){
-        sum += hitung_waktu(i);
-    }
-    printf("\nWAIT %d",sum);
+    print_order();
+    print_wait(N);
     return 0;
-
 }
